@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Promoción del día</title>
+	</head>
+<body background="imagenes\0aa5f74707a3ae30dc731c41e849240a.jpg">
+	<div style="text-align:center;">
+		<style>
+			#color1{color:white; font-family: Monaco,Georgia,Times,serif;}
+		</style>
+
+	<h1 id="color1">Promociones</h1>
+	<h3 id="color1">Todos los campos son obligatorios</h3>
+	
+<?php
+		require("connect.php");
+?>
+	<table border="1" id="color1" align="center">
+		<tr>
+			<td>Id</td>
+			<td>Producto</td>
+			<td>Valor</td>
+			<td>Unidad</td>
+			<td>Dia</td>
+			<td>Fecha</td>
+		</tr>
+
+<?php
+			$consulta = "select * FROM datos";
+			$RConsulta = mysqli_query($link,$consulta);
+
+		while ($mostrar=mysqli_fetch_array($RConsulta)) {
+				
+?>
+		<tr>
+			<td><?php echo $mostrar['clave'] ?></td>
+			<td><?php echo $mostrar['Producto'] ?></td>
+			<td><?php echo $mostrar['Valor'] ?></td>
+			<td><?php echo $mostrar['Unidad'] ?></td>
+			<td><?php echo $mostrar['dia'] ?></td>
+			<td><?php echo $mostrar['fecha'] ?></td>
+			</tr>
+
+	<?php
+	}
+		include("cerrar_conexion")
+
+	?>
+	</table>
+
+	<form method="POST" action="insert.php" />
+		<table align="center" id="color1">
+			<tr>
+				<td></td>
+				<td>Producto</td>
+				<td>Valor</td>
+				<td>Unidad</td>
+				<td>Dia</td>
+				<td>Fecha</td>
+				</tr>
+			<tr>
+				<td>Promocion 1</td>
+				<td><input type="text" id="Producto1" name="Producto1" class="form-control" placeholder="Arroz-Papa-etc" required=""></td>
+				<td><input type="text" id="valor1" name="valor1" class="form-control" placeholder="1000-10000-etc" required></td>
+				<td><input type="text" id="unidad1" name="unidad1" class="form-control" placeholder="Kilo-Caja-etc" required></td>
+				<td><input type="text" id="dia1" name="dia1" class="form-control" placeholder="Sabado-Martes-etc" required></td>
+				<td><input type="text" id="fecha1" name="fecha1" class="form-control" placeholder="2019-11-13" required></td>
+			</tr>
+		</table>
+	</form>
+	</table>
+		<input type="submit" name="btn1" value="Cambiar"/>
+
+	
+
+</body>
+</html>
